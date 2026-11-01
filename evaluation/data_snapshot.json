@@ -1,0 +1,26 @@
+{
+  "postgres": "18.6",
+  "row_counts": {
+    "active_sites": 2734,
+    "allergenic_properties": 6,
+    "binding_sites": 26493,
+    "biotechnological_uses": 21,
+    "disease_involvement": 6874,
+    "functions": 13257,
+    "genes": 26619,
+    "interactions": 157683,
+    "mutagenesis": 29799,
+    "pathways": 322,
+    "pharmaceutical_uses": 49,
+    "protein_families": 3146,
+    "protein_family_memberships": 9093,
+    "protein_genes": 27273,
+    "protein_pathways": 1187,
+    "proteins": 12000,
+    "subcellular_locations": 19268,
+    "taxonomic_lineage": 168000,
+    "topological_domains": 12127,
+    "toxic_doses": 0
+  },
+  "proteins_md5": "a49cebd035ddb31ab78e4d7b42629ce8"
+}

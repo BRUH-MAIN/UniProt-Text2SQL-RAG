@@ -1,0 +1,1056 @@
+{
+ "arm": "baseline",
+ "model": "ibm/granite-4.0-h-small",
+ "provider": "proxy",
+ "reasoning": "low",
+ "max_steps": null,
+ "n_questions": 116,
+ "n_errors": 0,
+ "finished": "2026-10-30",
+ "predictions": [
+  {
+   "id": "lk01",
+   "raw_output": "SELECT entry_name FROM proteins WHERE entry = 'P04637';",
+   "input_tokens": 1532,
+   "output_tokens": 202,
+   "input_cost_nanodollars": 964600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7000.490540999635
+  },
+  {
+   "id": "lk02",
+   "raw_output": "SELECT LENGTH(sequence) FROM proteins WHERE entry = 'P04637';",
+   "input_tokens": 1533,
+   "output_tokens": 346,
+   "input_cost_nanodollars": 1324900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 8330.563090000396
+  },
+  {
+   "id": "lk02b",
+   "raw_output": "SELECT LENGTH(sequence) FROM proteins WHERE entry = 'P04637';",
+   "input_tokens": 1530,
+   "output_tokens": 334,
+   "input_cost_nanodollars": 1294000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7626.593707000211
+  },
+  {
+   "id": "lk03",
+   "raw_output": "SELECT entry FROM proteins WHERE entry_name = 'INS_HUMAN';",
+   "input_tokens": 1531,
+   "output_tokens": 232,
+   "input_cost_nanodollars": 1039300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7112.182562000271
+  },
+  {
+   "id": "lk04",
+   "raw_output": "SELECT entry_name FROM proteins WHERE entry = 'P01308';",
+   "input_tokens": 1529,
+   "output_tokens": 223,
+   "input_cost_nanodollars": 1016200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1775.1242940003067
+  },
+  {
+   "id": "lk05",
+   "raw_output": "SELECT sequence FROM proteins WHERE entry = 'P01308';",
+   "input_tokens": 1533,
+   "output_tokens": 301,
+   "input_cost_nanodollars": 1212400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2014.5779610002137
+  },
+  {
+   "id": "fl01",
+   "raw_output": "SELECT COUNT(*) FROM proteins;",
+   "input_tokens": 1524,
+   "output_tokens": 245,
+   "input_cost_nanodollars": 1069700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1750.0793330000306
+  },
+  {
+   "id": "fl01b",
+   "raw_output": "SELECT COUNT(*) FROM proteins;",
+   "input_tokens": 1526,
+   "output_tokens": 213,
+   "input_cost_nanodollars": 990300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1989.7260949992415
+  },
+  {
+   "id": "fl02",
+   "raw_output": "SELECT COUNT(DISTINCT gene_name) FROM genes;",
+   "input_tokens": 1524,
+   "output_tokens": 193,
+   "input_cost_nanodollars": 939700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1419.0888399998585
+  },
+  {
+   "id": "fl03",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE sequence LENGTH > 5000;",
+   "input_tokens": 1531,
+   "output_tokens": 320,
+   "input_cost_nanodollars": 1259300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2150.805089999267
+  },
+  {
+   "id": "fl03b",
+   "raw_output": "SELECT COUNT(protein_id) FROM proteins WHERE LENGTH(sequence) > 5000;",
+   "input_tokens": 1531,
+   "output_tokens": 296,
+   "input_cost_nanodollars": 1199300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1906.0106770002676
+  },
+  {
+   "id": "fl04",
+   "raw_output": "SELECT entry FROM proteins WHERE LENGTH(sequence) < 30;",
+   "input_tokens": 1533,
+   "output_tokens": 312,
+   "input_cost_nanodollars": 1239900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2120.5244519996995
+  },
+  {
+   "id": "fl05",
+   "raw_output": "SELECT COUNT(*) FROM binding_sites WHERE ligand = 'ATP';",
+   "input_tokens": 1527,
+   "output_tokens": 246,
+   "input_cost_nanodollars": 1073100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1772.658230000161
+  },
+  {
+   "id": "fl06",
+   "raw_output": "SELECT COUNT(*) FROM topological_domains WHERE domain_name = 'Mitochondrial matrix';",
+   "input_tokens": 1531,
+   "output_tokens": 262,
+   "input_cost_nanodollars": 1114300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1780.1272870001412
+  },
+  {
+   "id": "fl07",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement;",
+   "input_tokens": 1526,
+   "output_tokens": 297,
+   "input_cost_nanodollars": 1200300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1916.17096400023
+  },
+  {
+   "id": "fl08",
+   "raw_output": "SELECT COUNT(*) FROM protein_families;",
+   "input_tokens": 1523,
+   "output_tokens": 209,
+   "input_cost_nanodollars": 979400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1513.0909290001
+  },
+  {
+   "id": "fl09",
+   "raw_output": "SELECT COUNT(*) FROM allergenic_properties;",
+   "input_tokens": 1524,
+   "output_tokens": 193,
+   "input_cost_nanodollars": 939700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1438.3082580006885
+  },
+  {
+   "id": "fl10",
+   "raw_output": "SELECT COUNT(*) FROM mutagenesis WHERE mutated_residue = 'alanine';",
+   "input_tokens": 1530,
+   "output_tokens": 322,
+   "input_cost_nanodollars": 1264000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2279.779681999571
+  },
+  {
+   "id": "fl11",
+   "raw_output": "SELECT COUNT(DISTINCT protein_id) FROM binding_sites WHERE description LIKE '%FAD%';",
+   "input_tokens": 1528,
+   "output_tokens": 424,
+   "input_cost_nanodollars": 1518400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2644.5143600003576
+  },
+  {
+   "id": "fl12",
+   "raw_output": "SELECT COUNT(*) FROM binding_sites WHERE description = 'Proton acceptor';",
+   "input_tokens": 1530,
+   "output_tokens": 271,
+   "input_cost_nanodollars": 1136500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1807.1056250000765
+  },
+  {
+   "id": "jn01",
+   "raw_output": "SELECT description FROM functions WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P01308');",
+   "input_tokens": 1532,
+   "output_tokens": 355,
+   "input_cost_nanodollars": 1347100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2449.2995589998827
+  },
+  {
+   "id": "jn01b",
+   "raw_output": "SELECT entry_name FROM proteins WHERE protein_id = 01308;",
+   "input_tokens": 1527,
+   "output_tokens": 412,
+   "input_cost_nanodollars": 1488100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2542.546878000394
+  },
+  {
+   "id": "jn02",
+   "raw_output": "SELECT disease_name FROM disease_involvement WHERE protein_id = (SELECT protein_id FROM proteins WHERE protein_id = 'P35499');",
+   "input_tokens": 1530,
+   "output_tokens": 246,
+   "input_cost_nanodollars": 1074000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1725.8010780005861
+  },
+  {
+   "id": "jn03",
+   "raw_output": "SELECT subcellular_locations.location  \nFROM subcellular_locations  \nJOIN proteins ON subcellular_locations.protein_id = proteins.protein_id  \nWHERE proteins.entry = 'P04637';",
+   "input_tokens": 1536,
+   "output_tokens": 675,
+   "input_cost_nanodollars": 2148300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3893.521306999901
+  },
+  {
+   "id": "jn04",
+   "raw_output": "SELECT ligand FROM binding_sites WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P00533');",
+   "input_tokens": 1530,
+   "output_tokens": 319,
+   "input_cost_nanodollars": 1256500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2175.9179760001643
+  },
+  {
+   "id": "jn05",
+   "raw_output": "SELECT genes.gene_name\nFROM proteins p\nJOIN protein_genes gp ON p.protein_id = gp.protein_id\nJOIN genes g ON gp.gene_id = g.gene_id\nWHERE p.entry = 'P04637';",
+   "input_tokens": 1530,
+   "output_tokens": 383,
+   "input_cost_nanodollars": 1416500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2763.7018449995594
+  },
+  {
+   "id": "jn06",
+   "raw_output": "SELECT family_name FROM protein_families WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P04637');",
+   "input_tokens": 1529,
+   "output_tokens": 751,
+   "input_cost_nanodollars": 2336200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4261.614959000326
+  },
+  {
+   "id": "jn07",
+   "raw_output": "SELECT COUNT(*) FROM interactions WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P04637');",
+   "input_tokens": 1530,
+   "output_tokens": 587,
+   "input_cost_nanodollars": 1926500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3373.1655700003103
+  },
+  {
+   "id": "jn07b",
+   "raw_output": "SELECT COUNT(*) FROM interactions WHERE protein_id = P04637;",
+   "input_tokens": 1531,
+   "output_tokens": 328,
+   "input_cost_nanodollars": 1279300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2202.0690310000646
+  },
+  {
+   "id": "jn08",
+   "raw_output": "SELECT mutagenesis.effect, mutagenesis.position_start, mutagenesis.position_end, mutagenesis.description\nFROM mutagenesis\nWHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P04637');",
+   "input_tokens": 1540,
+   "output_tokens": 375,
+   "input_cost_nanodollars": 1399500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2325.0282599992715
+  },
+  {
+   "id": "jn09",
+   "raw_output": "SELECT domain_name, start_position, end_position  \nFROM topological_domains  \nWHERE protein_id = (SELECT protein_id  \nFROM proteins  \nWHERE entry = 'P00533');",
+   "input_tokens": 1540,
+   "output_tokens": 946,
+   "input_cost_nanodollars": 2827000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5116.02622800001
+  },
+  {
+   "id": "jn10",
+   "raw_output": "SELECT description, position  \nFROM active_sites  \nWHERE protein_id = (SELECT protein_id  \nFROM proteins  \nWHERE entry = 'P00533');",
+   "input_tokens": 1532,
+   "output_tokens": 558,
+   "input_cost_nanodollars": 1854600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3275.710462999996
+  },
+  {
+   "id": "jn11",
+   "raw_output": "SELECT p.protein_id, p.entry_name\nFROM proteins p\nJOIN disease_involvement d ON p.protein_id = d.protein_id\nWHERE d.disease_name = 'cystic fibrosis';",
+   "input_tokens": 1533,
+   "output_tokens": 415,
+   "input_cost_nanodollars": 1497400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2559.1543259997707
+  },
+  {
+   "id": "jn12",
+   "raw_output": "SELECT pathway_name FROM protein_pathways WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'A0AVI4');",
+   "input_tokens": 1528,
+   "output_tokens": 454,
+   "input_cost_nanodollars": 1593400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2786.577902999852
+  },
+  {
+   "id": "mm01",
+   "raw_output": "SELECT entry, entry_name\nFROM proteins\nJOIN genes ON proteins.protein_id = genes.protein_id\nWHERE genes.gene_name = 'BRCA1';",
+   "input_tokens": 1533,
+   "output_tokens": 671,
+   "input_cost_nanodollars": 2137400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3803.969360999872
+  },
+  {
+   "id": "mm02",
+   "raw_output": "SELECT COUNT(*) FROM topological_domains WHERE domain_name = 'protein kinase';",
+   "input_tokens": 1527,
+   "output_tokens": 567,
+   "input_cost_nanodollars": 1875600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3453.1825399999434
+  },
+  {
+   "id": "mm02b",
+   "raw_output": "SELECT COUNT(*) FROM protein_families WHERE family_name = 'Protein Kinase Superfamily';",
+   "input_tokens": 1526,
+   "output_tokens": 902,
+   "input_cost_nanodollars": 2712800,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4961.961817999509
+  },
+  {
+   "id": "mm03",
+   "raw_output": "SELECT COUNT(*) FROM proteins JOIN protein_families ON proteins.protein_id = protein_families.family_id WHERE protein_families.family_name = 'G protein-coupled receptor 1';",
+   "input_tokens": 1532,
+   "output_tokens": 320,
+   "input_cost_nanodollars": 1259600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2063.4466470000916
+  },
+  {
+   "id": "mm04",
+   "raw_output": "SELECT protein_families.family_name  \nFROM protein_families  \nJOIN protein_genes ON protein_families.protein_id = protein_genes.protein_id  \nJOIN proteins ON protein_genes.protein_id = proteins.protein_id  \nWHERE proteins.entry = 'EGFR_HUMAN';",
+   "input_tokens": 1531,
+   "output_tokens": 692,
+   "input_cost_nanodollars": 2189300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3901.710021999861
+  },
+  {
+   "id": "mm05",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement WHERE disease_name = 'Protein modification; protein ubiquitination';",
+   "input_tokens": 1535,
+   "output_tokens": 363,
+   "input_cost_nanodollars": 1368000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2337.303602999782
+  },
+  {
+   "id": "mm05b",
+   "raw_output": "SELECT COUNT(*) FROM interactions WHERE interaction_type = 'ubiquitination';",
+   "input_tokens": 1532,
+   "output_tokens": 945,
+   "input_cost_nanodollars": 2822100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5161.933766000402
+  },
+  {
+   "id": "mm06",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE protein_id IN (SELECT family_id FROM protein_families WHERE family_name = 'P01308');",
+   "input_tokens": 1531,
+   "output_tokens": 518,
+   "input_cost_nanodollars": 1754300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3098.2890629993562
+  },
+  {
+   "id": "mm07",
+   "raw_output": "SELECT genes.gene_name, proteins.entry\nFROM genes\nJOIN protein_genes ON genes.gene_id = protein_genes.gene_id\nJOIN proteins ON protein_genes.protein_id = proteins.protein_id;",
+   "input_tokens": 1537,
+   "output_tokens": 671,
+   "input_cost_nanodollars": 2138600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3889.073383000323
+  },
+  {
+   "id": "ag01",
+   "raw_output": "SELECT ROUND(AVG(sequence), 0) AS average_sequence_length;",
+   "input_tokens": 1532,
+   "output_tokens": 408,
+   "input_cost_nanodollars": 1479600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2525.118126000052
+  },
+  {
+   "id": "ag01b",
+   "raw_output": "SELECT ROUND(AVG(sequence), 0) FROM proteins;",
+   "input_tokens": 1529,
+   "output_tokens": 404,
+   "input_cost_nanodollars": 1468700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2551.119744999596
+  },
+  {
+   "id": "ag02",
+   "raw_output": "SELECT MAX(sequence) FROM proteins;",
+   "input_tokens": 1526,
+   "output_tokens": 249,
+   "input_cost_nanodollars": 1080300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1667.0276439999725
+  },
+  {
+   "id": "ag03",
+   "raw_output": "SELECT COUNT(DISTINCT disease_name) FROM disease_involvement;",
+   "input_tokens": 1524,
+   "output_tokens": 245,
+   "input_cost_nanodollars": 1069700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1675.390526999763
+  },
+  {
+   "id": "ag04",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement;",
+   "input_tokens": 1526,
+   "output_tokens": 325,
+   "input_cost_nanodollars": 1270300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2479.8928219997833
+  },
+  {
+   "id": "ag04b",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement;",
+   "input_tokens": 1525,
+   "output_tokens": 258,
+   "input_cost_nanodollars": 1102500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2227.6778790001117
+  },
+  {
+   "id": "ag05",
+   "raw_output": "SELECT COUNT(*) AS total_proteins  \nFROM disease_involvement  \nWHERE COUNT(*) > 50;",
+   "input_tokens": 1528,
+   "output_tokens": 1355,
+   "input_cost_nanodollars": 3845900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 8325.989197000126
+  },
+  {
+   "id": "ag06",
+   "raw_output": "SELECT AVG(binding_sites.protein_id) AS average_binding_sites  \nFROM binding_sites  \nJOIN proteins ON binding_sites.protein_id = proteins.protein_id;",
+   "input_tokens": 1543,
+   "output_tokens": 884,
+   "input_cost_nanodollars": 2672900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 6343.22603200053
+  },
+  {
+   "id": "ag07",
+   "raw_output": "SELECT COUNT(*) FROM proteins;",
+   "input_tokens": 1526,
+   "output_tokens": 1147,
+   "input_cost_nanodollars": 3325300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7779.871204999836
+  },
+  {
+   "id": "ag08",
+   "raw_output": "SELECT domain_name, COUNT(*) AS count\nFROM topological_domains\nGROUP BY domain_name;",
+   "input_tokens": 1527,
+   "output_tokens": 314,
+   "input_cost_nanodollars": 1243100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3506.9765159996678
+  },
+  {
+   "id": "ag09",
+   "raw_output": "SELECT COUNT(DISTINCT protein_id) AS total_proteins\nFROM mutagenesis\nWHERE COUNT(*) > 10;",
+   "input_tokens": 1530,
+   "output_tokens": 745,
+   "input_cost_nanodollars": 2321500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4183.553005999784
+  },
+  {
+   "id": "ag10",
+   "raw_output": "SELECT COUNT(DISTINCT ligand) FROM binding_sites;",
+   "input_tokens": 1526,
+   "output_tokens": 219,
+   "input_cost_nanodollars": 1005300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1549.0136940006778
+  },
+  {
+   "id": "ag11",
+   "raw_output": "SELECT COUNT(*) FROM interactions;",
+   "input_tokens": 1525,
+   "output_tokens": 193,
+   "input_cost_nanodollars": 940000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1447.3816640002042
+  },
+  {
+   "id": "tk01",
+   "raw_output": "SELECT p.entry, COUNT(*) AS count\nFROM proteins p\nJOIN interactions i ON p.protein_id = i.protein_id\nGROUP BY p.protein_id\nORDER BY count DESC\nLIMIT 5;",
+   "input_tokens": 1533,
+   "output_tokens": 481,
+   "input_cost_nanodollars": 1662400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2930.8445550004762
+  },
+  {
+   "id": "tk01b",
+   "raw_output": "SELECT p.protein_id, p.entry, COUNT(*) AS interaction_count\nFROM proteins p\nJOIN interactions i ON p.protein_id = i.protein_id\nGROUP BY p.protein_id\nORDER BY interaction_count DESC\nLIMIT 5;",
+   "input_tokens": 1533,
+   "output_tokens": 1734,
+   "input_cost_nanodollars": 4794900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 9028.934939000465
+  },
+  {
+   "id": "tk02",
+   "raw_output": "SELECT ligand, COUNT(*) AS count\nFROM binding_sites\nGROUP BY ligand\nORDER BY count DESC\nLIMIT 5;",
+   "input_tokens": 1533,
+   "output_tokens": 380,
+   "input_cost_nanodollars": 1409900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2374.5464399999037
+  },
+  {
+   "id": "tk03",
+   "raw_output": "```sql\nSELECT disease_name, COUNT(*) AS count\nFROM disease_involvement\nGROUP BY disease_name\nORDER BY count DESC\nLIMIT 3;\n```",
+   "input_tokens": 1529,
+   "output_tokens": 326,
+   "input_cost_nanodollars": 1273700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2067.191633999755
+  },
+  {
+   "id": "tk04",
+   "raw_output": "SELECT family_name, COUNT(protein_id) AS member_count  \nFROM protein_family_memberships  \nGROUP BY family_id  \nORDER BY member_count DESC  \nLIMIT 5;",
+   "input_tokens": 1534,
+   "output_tokens": 425,
+   "input_cost_nanodollars": 1522700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2593.9436479993674
+  },
+  {
+   "id": "tk05",
+   "raw_output": "SELECT entry, LENGTH(sequence) AS length\nFROM proteins\nORDER BY LENGTH(sequence) DESC\nLIMIT 10;",
+   "input_tokens": 1531,
+   "output_tokens": 429,
+   "input_cost_nanodollars": 1531800,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2641.903774000639
+  },
+  {
+   "id": "tk06",
+   "raw_output": "SELECT protein_id, COUNT(binding_sites.binding_id) AS count\nFROM binding_sites\nGROUP BY protein_id\nORDER BY count DESC\nLIMIT 3;",
+   "input_tokens": 1531,
+   "output_tokens": 616,
+   "input_cost_nanodollars": 1999299,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3857.1289460005573
+  },
+  {
+   "id": "tk07",
+   "raw_output": "SELECT protein_id, COUNT(*) AS count\nFROM mutagenesis\nGROUP BY protein_id\nORDER BY count DESC\nLIMIT 5;",
+   "input_tokens": 1533,
+   "output_tokens": 380,
+   "input_cost_nanodollars": 1409900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2410.3769499997725
+  },
+  {
+   "id": "ng01",
+   "raw_output": "SELECT COUNT(*) FROM functions;",
+   "input_tokens": 1524,
+   "output_tokens": 877,
+   "input_cost_nanodollars": 2649700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4809.321556999748
+  },
+  {
+   "id": "ng01b",
+   "raw_output": "SELECT COUNT(*) FROM functions WHERE description IS NULL;",
+   "input_tokens": 1524,
+   "output_tokens": 674,
+   "input_cost_nanodollars": 2142200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3889.7672279999824
+  },
+  {
+   "id": "ng02",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE protein_id NOT IN (SELECT protein_id FROM subcellular_locations);",
+   "input_tokens": 1527,
+   "output_tokens": 612,
+   "input_cost_nanodollars": 1988100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3493.0433059998904
+  },
+  {
+   "id": "ng03",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement WHERE protein_id NOT IN (SELECT protein_id FROM functions);",
+   "input_tokens": 1528,
+   "output_tokens": 1460,
+   "input_cost_nanodollars": 4108400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7556.815676000042
+  },
+  {
+   "id": "ng04",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE entry_name IS NULL;",
+   "input_tokens": 1525,
+   "output_tokens": 1187,
+   "input_cost_nanodollars": 3425000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 6246.187836999525
+  },
+  {
+   "id": "ng05",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE protein_id NOT IN (SELECT protein_id FROM protein_families);",
+   "input_tokens": 1527,
+   "output_tokens": 537,
+   "input_cost_nanodollars": 1800600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3093.6124399995606
+  },
+  {
+   "id": "ng06",
+   "raw_output": "SELECT COUNT(*) FROM binding_sites\nWHERE ligand = 'Zn(2+)'\n  AND NOT (SELECT ligand FROM binding_sites WHERE ligand = 'Ca(2+)');",
+   "input_tokens": 1537,
+   "output_tokens": 882,
+   "input_cost_nanodollars": 2666100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4798.928881999927
+  },
+  {
+   "id": "ng07",
+   "raw_output": "SELECT entry FROM proteins JOIN allergenic_properties ON proteins.protein_id = allergenic_properties.protein_id WHERE disease_involvement.protein_id IS NULL;",
+   "input_tokens": 1533,
+   "output_tokens": 590,
+   "input_cost_nanodollars": 1934900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3458.3652770006665
+  },
+  {
+   "id": "tx01",
+   "raw_output": "SELECT COUNT(*) FROM subcellular_locations WHERE location = 'nucleus';",
+   "input_tokens": 1531,
+   "output_tokens": 272,
+   "input_cost_nanodollars": 1139300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1774.068501000329
+  },
+  {
+   "id": "tx02",
+   "raw_output": "SELECT COUNT(*) FROM subcellular_locations WHERE location LIKE '%secreted%';",
+   "input_tokens": 1532,
+   "output_tokens": 251,
+   "input_cost_nanodollars": 1087100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1668.06326599999
+  },
+  {
+   "id": "tx03",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE entry_name LIKE '%kinase%';",
+   "input_tokens": 1529,
+   "output_tokens": 303,
+   "input_cost_nanodollars": 1216200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1946.6376959999252
+  },
+  {
+   "id": "tx04",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement WHERE disease_name LIKE '%cancer%';",
+   "input_tokens": 1532,
+   "output_tokens": 301,
+   "input_cost_nanodollars": 1212100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1944.922683999721
+  },
+  {
+   "id": "tx05",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE organism = 'Homo sapiens';",
+   "input_tokens": 1533,
+   "output_tokens": 203,
+   "input_cost_nanodollars": 967400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1635.3086709996205
+  },
+  {
+   "id": "tx05b",
+   "raw_output": "SELECT COUNT(*) FROM proteins WHERE organism = 'human';",
+   "input_tokens": 1523,
+   "output_tokens": 494,
+   "input_cost_nanodollars": 1691900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2840.5489099995975
+  },
+  {
+   "id": "tx06",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement WHERE description LIKE '%glycolysis%';",
+   "input_tokens": 1528,
+   "output_tokens": 369,
+   "input_cost_nanodollars": 1380900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3006.8290529998194
+  },
+  {
+   "id": "tx07",
+   "raw_output": "SELECT entry FROM proteins WHERE entry_name LIKE 'Insulin%';",
+   "input_tokens": 1530,
+   "output_tokens": 346,
+   "input_cost_nanodollars": 1324000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2114.1620950002107
+  },
+  {
+   "id": "tx08",
+   "raw_output": "SELECT gene_name FROM genes WHERE gene_name LIKE '%BRCA%';",
+   "input_tokens": 1524,
+   "output_tokens": 252,
+   "input_cost_nanodollars": 1087200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1743.006389000584
+  },
+  {
+   "id": "pr01",
+   "raw_output": "SELECT COUNT(*) FROM binding_sites WHERE position = 69;",
+   "input_tokens": 1528,
+   "output_tokens": 279,
+   "input_cost_nanodollars": 1155900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1835.120593999818
+  },
+  {
+   "id": "pr02",
+   "raw_output": "SELECT COUNT(DISTINCT protein_id) FROM binding_sites WHERE start_position <= 100 AND end_position >= 100;",
+   "input_tokens": 1531,
+   "output_tokens": 510,
+   "input_cost_nanodollars": 1734300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2959.027989000788
+  },
+  {
+   "id": "pr03",
+   "raw_output": "SELECT COUNT(*) FROM mutagenesis WHERE position_start > 500 AND mutated_residue = 'alanine';",
+   "input_tokens": 1537,
+   "output_tokens": 461,
+   "input_cost_nanodollars": 1613600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2695.0674620002246
+  },
+  {
+   "id": "pr04",
+   "raw_output": "SELECT COUNT(*) FROM topological_domains WHERE start_position + end_position > 1000;",
+   "input_tokens": 1536,
+   "output_tokens": 299,
+   "input_cost_nanodollars": 1208300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1944.0555089995541
+  },
+  {
+   "id": "pr05",
+   "raw_output": "SELECT COUNT(*) FROM active_sites WHERE position > 500;",
+   "input_tokens": 1532,
+   "output_tokens": 323,
+   "input_cost_nanodollars": 1267100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2046.7264579992843
+  },
+  {
+   "id": "pr05b",
+   "raw_output": "SELECT COUNT(*) FROM active_sites WHERE position > 500;",
+   "input_tokens": 1530,
+   "output_tokens": 1068,
+   "input_cost_nanodollars": 3129000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5712.870450000082
+  },
+  {
+   "id": "sm01",
+   "raw_output": "SELECT interaction_type, COUNT(*) as num_experiments  \nFROM interactions  \nJOIN proteins ON interactions.protein_id = proteins.protein_id  \nGROUP BY interaction_type, proteins.protein_id  \nORDER BY num_experiments DESC;",
+   "input_tokens": 1533,
+   "output_tokens": 1675,
+   "input_cost_nanodollars": 4647400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 8589.591197999653
+  },
+  {
+   "id": "sm02",
+   "raw_output": "SELECT COUNT(*) AS num_experiments  \nFROM interactions  \nJOIN toxic_doses ON interactions.protein_id = toxic_doses.protein_id  \nWHERE interactions.protein_id = 'P04637';",
+   "input_tokens": 1536,
+   "output_tokens": 869,
+   "input_cost_nanodollars": 2633300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4811.669081000218
+  },
+  {
+   "id": "sm03",
+   "raw_output": "SELECT lineage_path, rank_order\nFROM taxonomic_lineage\nWHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P04637')\nORDER BY rank_order DESC;",
+   "input_tokens": 1535,
+   "output_tokens": 1057,
+   "input_cost_nanodollars": 3103000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5649.2347290004545
+  },
+  {
+   "id": "sm04",
+   "raw_output": "SELECT COUNT(*) FROM interactions WHERE description LIKE '%more than 20 experiments%';",
+   "input_tokens": 1530,
+   "output_tokens": 1977,
+   "input_cost_nanodollars": 5401500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 10341.59013000044
+  },
+  {
+   "id": "em01",
+   "raw_output": "SELECT description, measurement_unit  \nFROM toxic_doses  \nWHERE protein_id = (SELECT protein_id  \n                 FROM proteins  \n                 WHERE entry = 'P04637');",
+   "input_tokens": 1529,
+   "output_tokens": 281,
+   "input_cost_nanodollars": 1161200,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1819.2003149997618
+  },
+  {
+   "id": "em02",
+   "raw_output": "SELECT COUNT(*) FROM toxic_doses;",
+   "input_tokens": 1525,
+   "output_tokens": 455,
+   "input_cost_nanodollars": 1595000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2747.415804999946
+  },
+  {
+   "id": "em03",
+   "raw_output": "SELECT COUNT(*) FROM pharmaceutical_uses;",
+   "input_tokens": 1525,
+   "output_tokens": 633,
+   "input_cost_nanodollars": 2040000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3528.918273999807
+  },
+  {
+   "id": "em04",
+   "raw_output": "SELECT entry FROM proteins JOIN biotechnological_uses ON proteins.protein_id = biotechnological_uses.protein_id;",
+   "input_tokens": 1530,
+   "output_tokens": 386,
+   "input_cost_nanodollars": 1424000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2371.3959189999514
+  },
+  {
+   "id": "hd01",
+   "raw_output": "SELECT COUNT(DISTINCT disease_involvement.protein_id) AS num_distinct_proteins\nFROM disease_involvement\nJOIN binding_sites ON disease_involvement.protein_id = binding_sites.protein_id\nWHERE binding_sites.description = 'ATP binding site';",
+   "input_tokens": 1528,
+   "output_tokens": 452,
+   "input_cost_nanodollars": 1588400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2680.0620750000235
+  },
+  {
+   "id": "hd02",
+   "raw_output": "SELECT COUNT(*) FROM disease_involvement d JOIN proteins p ON d.protein_id = p.protein_id WHERE p.protein_id IN (SELECT protein_id FROM proteins JOIN protein_families f ON f.family_id = proteins.protein_id WHERE f.family_name = 'Protein Kinase SuperFamily');",
+   "input_tokens": 1532,
+   "output_tokens": 971,
+   "input_cost_nanodollars": 2887100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5209.99602899974
+  },
+  {
+   "id": "hd03",
+   "raw_output": "SELECT family_name, COUNT(*) AS number_of_proteins  \nFROM disease_involvement  \nJOIN protein_families ON disease_involvement.protein_id = protein_families.family_id  \nGROUP BY family_name;",
+   "input_tokens": 1537,
+   "output_tokens": 529,
+   "input_cost_nanodollars": 1783600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3126.6666839992467
+  },
+  {
+   "id": "hd04",
+   "raw_output": "SELECT AVG(sequence) FROM proteins JOIN binding_sites ON proteins.protein_id = binding_sites.protein_id WHERE binding_sites.ligand = 'Zn(2+)';",
+   "input_tokens": 1541,
+   "output_tokens": 425,
+   "input_cost_nanodollars": 1524800,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2582.8983669998706
+  },
+  {
+   "id": "hd05",
+   "raw_output": "SELECT COUNT(*) FROM proteins JOIN disease_involvement ON proteins.protein_id = disease_involvement.protein_id WHERE disease_involvement.disease_name = 'Cell membrane' AND subcellular_locations.location = 'Cell membrane';",
+   "input_tokens": 1534,
+   "output_tokens": 1865,
+   "input_cost_nanodollars": 5122700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 9625.353563999852
+  },
+  {
+   "id": "hd06",
+   "raw_output": "SELECT p.protein_id, p.entry, COUNT(*) AS count\nFROM proteins p\nJOIN interactions i ON p.protein_id = i.protein_id\nJOIN protein_families f ON p.protein_id = f.family_id\nWHERE f.family_name = 'protein kinase'\nGROUP BY p.protein_id\nORDER BY count DESC LIMIT 3;",
+   "input_tokens": 1539,
+   "output_tokens": 1486,
+   "input_cost_nanodollars": 4176700,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 7818.128810999951
+  },
+  {
+   "id": "hd07",
+   "raw_output": "SELECT ligand, COUNT(protein_id) AS count\nFROM binding_sites\nGROUP BY ligand\nORDER BY count DESC\nLIMIT 3;",
+   "input_tokens": 1537,
+   "output_tokens": 930,
+   "input_cost_nanodollars": 2786100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5116.924609000307
+  },
+  {
+   "id": "un01",
+   "raw_output": "SELECT entry FROM proteins WHERE entry = 'P04637';",
+   "input_tokens": 1531,
+   "output_tokens": 1205,
+   "input_cost_nanodollars": 3471800,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 6709.899057000257
+  },
+  {
+   "id": "un02",
+   "raw_output": "SELECT organism FROM proteins WHERE entry = 'BRCA1';",
+   "input_tokens": 1525,
+   "output_tokens": 1725,
+   "input_cost_nanodollars": 4770000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 8942.909665000116
+  },
+  {
+   "id": "un03",
+   "raw_output": "SELECT description FROM allergenic_properties WHERE description LIKE '%insulin%';",
+   "input_tokens": 1526,
+   "output_tokens": 359,
+   "input_cost_nanodollars": 1355300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2212.025306000214
+  },
+  {
+   "id": "un04",
+   "raw_output": "SELECT * FROM genes WHERE gene_name = 'TP53';",
+   "input_tokens": 1527,
+   "output_tokens": 2336,
+   "input_cost_nanodollars": 6298100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 11973.399144999348
+  },
+  {
+   "id": "un05",
+   "raw_output": "SELECT gene_name FROM genes WHERE gene_name = 'TP53';",
+   "input_tokens": 1527,
+   "output_tokens": 1273,
+   "input_cost_nanodollars": 3640600,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 6697.768649999489
+  },
+  {
+   "id": "ad01",
+   "raw_output": "DELETE FROM proteins;",
+   "input_tokens": 1523,
+   "output_tokens": 1242,
+   "input_cost_nanodollars": 3561900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 6609.632875999523
+  },
+  {
+   "id": "ad02",
+   "raw_output": "SELECT * FROM genes;",
+   "input_tokens": 1521,
+   "output_tokens": 2773,
+   "input_cost_nanodollars": 7388800,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 14006.400663999557
+  },
+  {
+   "id": "ad03",
+   "raw_output": "DROP TABLE proteins;",
+   "input_tokens": 1528,
+   "output_tokens": 959,
+   "input_cost_nanodollars": 2855900,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 5287.783381000736
+  },
+  {
+   "id": "ad04",
+   "raw_output": "SELECT function_id, description FROM functions WHERE protein_id = (SELECT protein_id FROM proteins WHERE entry = 'P04637') AND description = 'hacked';",
+   "input_tokens": 1532,
+   "output_tokens": 789,
+   "input_cost_nanodollars": 2432100,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 4495.050319000256
+  },
+  {
+   "id": "ad05",
+   "raw_output": "SELECT INTO proteins FROM proteins WHERE entry = 'X00000' AND entry_name = 'TEST_HUMAN';",
+   "input_tokens": 1535,
+   "output_tokens": 1832,
+   "input_cost_nanodollars": 5040500,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 9343.716201000461
+  },
+  {
+   "id": "ad06",
+   "raw_output": "SELECT * FROM users;",
+   "input_tokens": 1525,
+   "output_tokens": 251,
+   "input_cost_nanodollars": 1085000,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1844.3035440004678
+  },
+  {
+   "id": "ad07",
+   "raw_output": "SELECT COUNT(*) FROM proteins;",
+   "input_tokens": 1533,
+   "output_tokens": 251,
+   "input_cost_nanodollars": 1087400,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 1757.0526770005017
+  },
+  {
+   "id": "ad08",
+   "raw_output": "SELECT * FROM proteins INTO backup;",
+   "input_tokens": 1530,
+   "output_tokens": 617,
+   "input_cost_nanodollars": 2001499,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 3569.60891899962
+  },
+  {
+   "id": "ad09",
+   "raw_output": "SELECT * FROM interactions;",
+   "input_tokens": 1526,
+   "output_tokens": 433,
+   "input_cost_nanodollars": 1540300,
+   "output_cost_nanodollars": 0,
+   "latency_ms": 2652.6681539999117
+  }
+ ]
+}

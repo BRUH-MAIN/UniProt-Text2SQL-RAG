@@ -1,0 +1,506 @@
+[
+  {
+    "id": "ctl_select",
+    "class": "control",
+    "desc": "plain SELECT",
+    "sql": "SELECT entry FROM proteins LIMIT 3",
+    "expect": "allow",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": true,
+      "rows": 3,
+      "truncated": false,
+      "secs": 0.04
+    },
+    "privileged": {
+      "guard": true,
+      "ok": true,
+      "rows": 3,
+      "truncated": false,
+      "secs": 0.04
+    },
+    "readonly_summary": "ran, 3 rows",
+    "privileged_summary": "ran, 3 rows"
+  },
+  {
+    "id": "ctl_cte",
+    "class": "control",
+    "desc": "read-only CTE",
+    "sql": "WITH t AS (SELECT entry FROM proteins LIMIT 3) SELECT * FROM t",
+    "expect": "allow",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": true,
+      "rows": 3,
+      "truncated": false,
+      "secs": 0.04
+    },
+    "privileged": {
+      "guard": true,
+      "ok": true,
+      "rows": 3,
+      "truncated": false,
+      "secs": 0.03
+    },
+    "readonly_summary": "ran, 3 rows",
+    "privileged_summary": "ran, 3 rows"
+  },
+  {
+    "id": "ctl_semicolon_in_literal",
+    "class": "control",
+    "desc": "';' inside a string literal",
+    "sql": "SELECT 'a;b' AS x",
+    "expect": "allow",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": true,
+      "rows": 1,
+      "truncated": false,
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": true,
+      "ok": true,
+      "rows": 1,
+      "truncated": false,
+      "secs": 0.03
+    },
+    "readonly_summary": "ran, 1 rows",
+    "privileged_summary": "ran, 1 rows"
+  },
+  {
+    "id": "w_cte_delete",
+    "class": "write",
+    "desc": "data-modifying CTE (DELETE)",
+    "sql": "WITH d AS (DELETE FROM genes WHERE gene_id < 0 RETURNING *) SELECT count(*) FROM d",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: DELETE is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: DELETE is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_cte_insert",
+    "class": "write",
+    "desc": "data-modifying CTE (INSERT)",
+    "sql": "WITH i AS (INSERT INTO genes(gene_name) VALUES ('REDTEAM_X') RETURNING *) SELECT * FROM i",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: INSERT is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: INSERT is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_cte_update",
+    "class": "write",
+    "desc": "data-modifying CTE (UPDATE)",
+    "sql": "WITH u AS (UPDATE genes SET gene_name = gene_name WHERE gene_id < 0 RETURNING *) SELECT count(*) FROM u",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: UPDATE is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: UPDATE is not allowed (read-only access)",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_with_delete_tail",
+    "class": "write",
+    "desc": "WITH ... DELETE (SELECT only inside the CTE)",
+    "sql": "WITH x AS (SELECT 1) DELETE FROM genes WHERE gene_id < 0",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got DeleteStmt",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got DeleteStmt",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_select_into",
+    "class": "write",
+    "desc": "SELECT ... INTO creates a table",
+    "sql": "SELECT * INTO redteam_copy FROM genes LIMIT 1",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: SELECT ... INTO is not allowed; unknown table 'redteam_copy'; available tables: active_sites, allergenic_properties, binding_sites, biotechnological_uses, disea",
+      "kind": "guard",
+      "secs": 0.02
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: SELECT ... INTO is not allowed; unknown table 'redteam_copy'; available tables: active_sites, allergenic_properties, binding_sites, biotechnological_uses, disea",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_for_update",
+    "class": "write",
+    "desc": "SELECT ... FOR UPDATE takes row locks",
+    "sql": "SELECT * FROM genes LIMIT 1 FOR UPDATE",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: row locking (FOR UPDATE/SHARE) is not allowed",
+      "kind": "guard",
+      "secs": 0.02
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: row locking (FOR UPDATE/SHARE) is not allowed",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_stacked",
+    "class": "write",
+    "desc": "stacked statements",
+    "sql": "SELECT 1; DROP TABLE genes",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: exactly one statement is allowed",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: exactly one statement is allowed",
+      "kind": "guard",
+      "secs": 0.05
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_leading_comment",
+    "class": "write",
+    "desc": "comment before DELETE",
+    "sql": "/* hi */ DELETE FROM genes WHERE gene_id < 0",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got DeleteStmt",
+      "kind": "guard",
+      "secs": 0.05
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got DeleteStmt",
+      "kind": "guard",
+      "secs": 0.06
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_explain_analyze",
+    "class": "write",
+    "desc": "EXPLAIN ANALYZE of a write",
+    "sql": "EXPLAIN ANALYZE DELETE FROM genes WHERE gene_id < 0",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got ExplainStmt",
+      "kind": "guard",
+      "secs": 0.05
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got ExplainStmt",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "w_copy_program",
+    "class": "write",
+    "desc": "COPY ... TO PROGRAM",
+    "sql": "COPY (SELECT 1) TO PROGRAM 'id'",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got CopyStmt",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: only SELECT is allowed, got CopyStmt",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "d_pg_sleep",
+    "class": "dos",
+    "desc": "pg_sleep ties up a connection",
+    "sql": "SELECT pg_sleep(30)",
+    "expect": "block or time-limit",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function pg_sleep() is not allowed",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function pg_sleep() is not allowed",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "d_cartesian",
+    "class": "dos",
+    "desc": "cartesian product, never returns",
+    "sql": "SELECT count(*) FROM generate_series(1,100000) a, generate_series(1,100000) b",
+    "expect": "block or time-limit",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": false,
+      "error": "timeout: query exceeded 2s and was cancelled; make it cheaper (filter earlier, avoid cross joins)",
+      "kind": "timeout",
+      "secs": 2.05
+    },
+    "privileged": {
+      "guard": true,
+      "ok": false,
+      "error": "timeout: query exceeded 2s and was cancelled; make it cheaper (filter earlier, avoid cross joins)",
+      "kind": "timeout",
+      "secs": 2.03
+    },
+    "readonly_summary": "CANCELLED by server timeout",
+    "privileged_summary": "CANCELLED by server timeout"
+  },
+  {
+    "id": "d_unbounded_comment",
+    "class": "dos",
+    "desc": "trailing comment swallows the appended LIMIT",
+    "sql": "SELECT * FROM interactions -- note",
+    "expect": "cap at 200 rows",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": true,
+      "rows": 200,
+      "truncated": true,
+      "secs": 0.07
+    },
+    "privileged": {
+      "guard": true,
+      "ok": true,
+      "rows": 200,
+      "truncated": true,
+      "secs": 0.06
+    },
+    "readonly_summary": "ran, 200 rows (capped)",
+    "privileged_summary": "ran, 200 rows (capped)"
+  },
+  {
+    "id": "d_unbounded_subquery_limit",
+    "class": "dos",
+    "desc": "LIMIT in a subquery defeats the LIMIT regex",
+    "sql": "SELECT * FROM interactions WHERE protein_id IN (SELECT protein_id FROM proteins LIMIT 5000)",
+    "expect": "cap at 200 rows",
+    "guard_passed": true,
+    "readonly": {
+      "guard": true,
+      "ok": true,
+      "rows": 200,
+      "truncated": true,
+      "secs": 0.05
+    },
+    "privileged": {
+      "guard": true,
+      "ok": true,
+      "rows": 200,
+      "truncated": true,
+      "secs": 0.09
+    },
+    "readonly_summary": "ran, 200 rows (capped)",
+    "privileged_summary": "ran, 200 rows (capped)"
+  },
+  {
+    "id": "x_pg_read_file",
+    "class": "exfil",
+    "desc": "server-side file read",
+    "sql": "SELECT pg_read_file('PG_VERSION')",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function pg_read_file() is not allowed",
+      "kind": "guard",
+      "secs": 0.08
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function pg_read_file() is not allowed",
+      "kind": "guard",
+      "secs": 0.08
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "x_lo_import",
+    "class": "exfil",
+    "desc": "server-side large-object import",
+    "sql": "SELECT lo_import('PG_VERSION')",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function lo_import() is not allowed",
+      "kind": "guard",
+      "secs": 0.06
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function lo_import() is not allowed",
+      "kind": "guard",
+      "secs": 0.04
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "x_set_config",
+    "class": "exfil",
+    "desc": "change a session setting",
+    "sql": "SELECT set_config('statement_timeout','0',false)",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function set_config() is not allowed",
+      "kind": "guard",
+      "secs": 0.05
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: function set_config() is not allowed",
+      "kind": "guard",
+      "secs": 0.06
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  },
+  {
+    "id": "x_pg_user",
+    "class": "exfil",
+    "desc": "enumerate DB roles",
+    "sql": "SELECT usename FROM pg_user",
+    "expect": "block",
+    "guard_passed": false,
+    "readonly": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: unknown table 'pg_user'; available tables: active_sites, allergenic_properties, binding_sites, biotechnological_uses, disease_involvement, functions, genes, int",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "privileged": {
+      "guard": false,
+      "ok": false,
+      "error": "guard: unknown table 'pg_user'; available tables: active_sites, allergenic_properties, binding_sites, biotechnological_uses, disease_involvement, functions, genes, int",
+      "kind": "guard",
+      "secs": 0.03
+    },
+    "readonly_summary": "BLOCKED by guard",
+    "privileged_summary": "BLOCKED by guard"
+  }
+]

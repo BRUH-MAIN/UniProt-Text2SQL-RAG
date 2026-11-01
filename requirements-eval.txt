@@ -1,0 +1,6 @@
+-r requirements-ingest.txt
+# model-proxy client for the evaluation (Kaggle Benchmarks proxy is OpenAI-compatible)
+openai>=1.50
+kaggle>=2.2.5
+# README charts (evaluation/make_figures.py)
+matplotlib>=3.8
