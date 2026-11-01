@@ -8,3 +8,11 @@ __pycache__/
 *.egg-info/
 *.tmp
 .claude/
+
+# evaluation: generated / local-only artefacts
+evaluation/runs/**/*.partial.jsonl
+evaluation/runs/spend.jsonl
+evaluation/kaggle/task_*.py
+evaluation/.env
+.env.*
+!.env.example

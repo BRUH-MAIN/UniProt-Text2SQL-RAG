@@ -340,6 +340,11 @@ def load_batch(cur, caches: dict[str, dict], batch: list[dict]) -> None:
     approach this replaced took ~10 round trips per protein, which made
     ingesting thousands of proteins against a remote DB impractically slow."""
     entry_to_id = _bulk_insert_proteins(cur, [m["protein"] for m in batch])
+    # Re-loading a protein must replace its rows, not append to them: without this a second run
+    # over the same input silently doubled every detail table.
+    ids = list(entry_to_id.values())
+    for table in [*_DETAIL_TABLES, *(m2m[4] for m2m in _MANY_TO_MANY)]:
+        cur.execute(f"DELETE FROM {table} WHERE protein_id = ANY(%s)", (ids,))
     for table in _DETAIL_TABLES:
         rows_by_entry = {m["protein"]["entry"]: m[table] for m in batch}
         _bulk_insert_child_table(cur, table, rows_by_entry, entry_to_id)
@@ -369,9 +374,11 @@ def run(input_path: Path, limit: int, truncate: bool) -> None:
     with psycopg.connect(database_url) as conn:
         if truncate:
             with conn.cursor() as cur:
-                cur.execute("TRUNCATE proteins CASCADE")
+                # the reference tables are not FK-children of proteins, so name them explicitly -
+                # otherwise stale genes/pathways/families accumulate across truncating runs
+                cur.execute("TRUNCATE proteins, genes, pathways, protein_families RESTART IDENTITY CASCADE")
             conn.commit()
-            print("Truncated proteins and all dependent tables.")
+            print("Truncated all protein data and reference tables.")
 
         count = 0
         batch: list[dict] = []

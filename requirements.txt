@@ -4,4 +4,6 @@ pandas>=2.0
 psycopg[binary]>=3.2
 python-dotenv>=1.0
 google-genai>=0.3
+pglast>=7.0
+# sqlparse is only used by the original single-shot baseline guard (baseline/sql_guard.py)
 sqlparse>=0.5

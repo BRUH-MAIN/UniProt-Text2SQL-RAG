@@ -1,4 +1,4 @@
-from rag.sql_guard import clean_sql, is_safe_select
+from baseline.sql_guard import clean_sql, is_safe_select
 
 
 def test_clean_sql_strips_markdown_fences():

@@ -5,6 +5,10 @@
 **Gemini API key** - free tier, no credit card required:
 1. Go to https://aistudio.google.com/apikey and create a key.
 2. Put it in `.env` as `GEMINI_API_KEY`.
+3. Choose a **pinned** model id (not a `*-latest` alias, which silently changes behaviour and makes results
+   irreproducible) and put it in `.env` as `GEMINI_MODEL`. `app.py` refuses to start without it. Pick one that has
+   free-tier quota on your account (`google.genai.Client().models.list()`); `evaluation/RESULTS.md` says which
+   models were measured.
 
 **Postgres database** - either works, pick one:
 - [Neon](https://neon.tech) - generous free tier, plain Postgres.
@@ -24,7 +28,7 @@ pip install -r requirements-ingest.txt   # includes requirements.txt + ingestion
 cp .env.example .env
 ```
 
-Fill in `.env`: `GEMINI_API_KEY`, `DATABASE_URL`, `INGEST_DATABASE_URL`.
+Fill in `.env`: `GEMINI_API_KEY`, `GEMINI_MODEL`, `DATABASE_URL`, `INGEST_DATABASE_URL`.
 
 ## 3. Create the schema and ingest data
 
@@ -32,7 +36,8 @@ Fill in `.env`: `GEMINI_API_KEY`, `DATABASE_URL`, `INGEST_DATABASE_URL`.
 python -m db.init_db
 ```
 
-Creates all 20 tables from `db/schema.sql`.
+Creates all 20 tables from `db/schema.sql` and attaches the column notes in `db/annotations.sql`
+(what each column really contains; the agent reads them through `describe_table`).
 
 ```bash
 python -m ingest.fetch_uniprot
@@ -55,6 +60,8 @@ provider's SQL console), then run the full load:
 ```bash
 python -m ingest.parse_and_load --truncate   # --truncate wipes prior data first
 ```
+
+Re-running without `--truncate` is safe: each protein's rows are replaced, not appended.
 
 `INGEST_LIMIT` (default 12000, set in `.env`) caps how many records are
 loaded regardless of how many the UniProt query matched - this decouples
@@ -96,15 +103,18 @@ This starts a local Gradio server (default http://127.0.0.1:7860).
 
 **Manual smoke test** - ask a few real questions and confirm the flow works
 end to end:
-- "What is the function of protein P58486?"
-- "List proteins involved in a disease."
-- "What genes are associated with beta-thalassemia?"
+- "What is the function of protein P01308?"
+- "How many proteins belong to the protein kinase superfamily?"
+- "Which tissues is BRCA1 expressed in?" (not in the schema: it should decline, not invent)
 
-Confirm: the SQL shown in "View generated SQL" matches what's described in
-the answer, and results actually reflect ingested data. Also try a
-deliberately destructive-sounding question (e.g. "delete all proteins from
-the database") and confirm it's rejected by the safety guard rather than
-executed.
+Open "Agent steps" and "SQL": the answer must follow from the rows shown. A ⚠️ under the answer means a number
+or accession in it does not appear in the result. Also try a destructive request (e.g. "delete all proteins") and
+confirm it is declined or rejected, never executed. On startup the app prints a deployment warning if the
+database role is not least-privilege.
+
+**No cloud account?** Everything also runs against a local PostgreSQL (16+):
+`conda create -n uniprot -c conda-forge python=3.12 postgresql`, `initdb`, `createdb uniprot`, then follow steps 3-4
+against `postgresql://<you>@localhost:5432/uniprot`. This is how the evaluation database is built.
 
 ## 6. Deploy to Hugging Face Spaces
 
@@ -124,7 +134,7 @@ extra things beyond a normal Gradio Space to make it boot:
 2. **If it's `zero-a10g`**: ZeroGPU Spaces refuse to start unless at least one
    function is decorated `@spaces.GPU` (`No @spaces.GPU function detected
    during startup`). This repo's `app.py` already decorates
-   `answer_question` with a no-op `@spaces.GPU` purely to satisfy that
+   `ask` with a no-op `@spaces.GPU` purely to satisfy that
    check - it makes no GPU calls, so functionally nothing changes, but the
    `spaces` package must be installed (`requirements.txt` already includes
    it). Don't pin `gradio` to an old version if you edit `requirements.txt`
@@ -145,7 +155,9 @@ extra things beyond a normal Gradio Space to make it boot:
    `HfApi().upload_folder(..., ignore_patterns=[...])` is more reliable).
 5. In the Space's **Settings → Variables and secrets**, add secrets
    `GEMINI_API_KEY` and `DATABASE_URL` (the **read-only** connection string
-   from step 4 above).
+   from step 4 above) and the variable `GEMINI_MODEL` (pinned id). The demo spends your
+   quota on every request, so it rate-limits per client and globally; tune with the
+   `RATE_PER_CLIENT` (default 15/hour) and `RATE_GLOBAL` (default 150/hour) variables.
 6. Wait for it to build (`hf spaces wait <ns>/<name>`), then check logs
    (`hf spaces logs <ns>/<name>`) and re-run the smoke-test questions from
    step 5 against the live Space via `gradio_client.Client("<ns>/<name>",

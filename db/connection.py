@@ -34,7 +34,7 @@ def _ensure_limit(sql: str, limit: int = DEFAULT_ROW_LIMIT) -> str:
 def run_select(sql: str) -> list[dict[str, Any]]:
     """Execute a read-only SELECT against DATABASE_URL and return rows as dicts.
 
-    Callers must have already validated `sql` with rag.sql_guard.is_safe_select
+    Callers must have already validated `sql` with baseline.sql_guard.is_safe_select
     before calling this - this function does not itself restrict statement type.
     """
     database_url = os.environ["DATABASE_URL"]
